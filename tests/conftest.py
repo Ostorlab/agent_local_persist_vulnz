@@ -37,8 +37,9 @@ def create_scan_message():
     return message.Message.from_data(selector, data=msg_data)
 
 
-@mock.patch('ostorlab.runtimes.local.models.models.ENGINE_URL', 'sqlite:////tmp/ostorlab_db1.sqlite')
+
 @pytest.fixture(name='persist_vulnz_agent')
+@mock.patch('ostorlab.runtimes.local.models.models.ENGINE_URL', 'sqlite:////tmp/ostorlab_db1.sqlite')
 def fixture_tracker_agent():
     """Instantiate local_persist_vulnz agent."""
     definition = agent_definitions.AgentDefinition(
