@@ -1,9 +1,11 @@
 """Unittests for local_persist_vulnz agent."""
+from unittest import mock
+
 from ostorlab.runtimes.local.models import models
 
 
+@mock.patch('ostorlab.runtimes.local.models.models.ENGINE_URL', 'sqlite:////tmp/ostorlab_db1.sqlite')
 def testLocalPersistVulnzAgent_always_VulnPersistedToLocalDB(
-        mocker,
         agent_mock,
         persist_vulnz_agent,
         message):
