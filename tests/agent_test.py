@@ -2,7 +2,8 @@
 from ostorlab.runtimes.local.models import models
 
 
-def testVirusTotalAgent_when_virusTotalApiReturnsValidResponse_noRaiseVirusTotalApiError(
+def testLocalPersistVulnzAgent_always_VulnPersistedToLocalDB(
+        mocker,
         agent_mock,
         persist_vulnz_agent,
         message):
