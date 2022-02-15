@@ -11,7 +11,6 @@ from ostorlab.agent import message
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 
-
 @pytest.fixture(name='message')
 def create_scan_message():
     """Creates a dummy message of type v3.asset.file to be used by the agent for testing purposes.
@@ -35,7 +34,6 @@ def create_scan_message():
             'dna': 'dna'
         }
     return message.Message.from_data(selector, data=msg_data)
-
 
 
 @pytest.fixture(name='persist_vulnz_agent')
