@@ -11,8 +11,8 @@ from ostorlab.agent import message
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 
-@pytest.fixture(name='message')
-def create_scan_message():
+@pytest.fixture
+def scan_message():
     """Creates a dummy message of type v3.asset.file to be used by the agent for testing purposes.
     The files used is the EICAR Anti-Virus Test File.
     """
@@ -21,6 +21,7 @@ def create_scan_message():
             'title': 'my vuln',
             'technical_detail': 'print $1',
             'risk_rating': 'HIGH',
+            'cvss_v3_vector': 'AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:C',
             'short_description': 'Control user input',
             'description': 'XSS',
             'recommendation': 'Check input',
@@ -36,9 +37,9 @@ def create_scan_message():
     return message.Message.from_data(selector, data=msg_data)
 
 
-@pytest.fixture(name='persist_vulnz_agent')
+@pytest.fixture
 @mock.patch('ostorlab.runtimes.local.models.models.ENGINE_URL', 'sqlite:////tmp/ostorlab_db1.sqlite')
-def fixture_tracker_agent():
+def persist_vulnz_agent():
     """Instantiate local_persist_vulnz agent."""
     definition = agent_definitions.AgentDefinition(
         name='agent_local_persist_vulnz',

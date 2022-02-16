@@ -8,7 +8,7 @@ from ostorlab.runtimes.local.models import models
 def testLocalPersistVulnzAgent_always_VulnPersistedToLocalDB(
         agent_mock,
         persist_vulnz_agent,
-        message):
+        scan_message):
     init_count = models.Database().session.query(models.Vulnerability).count()
-    persist_vulnz_agent.process(message)
+    persist_vulnz_agent.process(scan_message)
     assert models.Database().session.query(models.Vulnerability).count() == init_count + 1
