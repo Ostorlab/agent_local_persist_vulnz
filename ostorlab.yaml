@@ -5,5 +5,7 @@ description: Agent responsible for persisting vulnerabilities to a local databas
 in_selectors:
   - v3.report.vulnerability
 out_selectors: []
+mounts:
+  - '$CONFIG_HOME/.ostorlab/db.sqlite:/root/.ostorlab/db.sqlite'
 docker_file_path : Dockerfile
 docker_build_root : .
