@@ -1,6 +1,6 @@
 kind: Agent
 name: local_persist_vulnz
-version: 0.0.1
+version: 0.0.2
 description: Agent responsible for persisting vulnerabilities to a local database.
 in_selectors:
   - v3.report.vulnerability
