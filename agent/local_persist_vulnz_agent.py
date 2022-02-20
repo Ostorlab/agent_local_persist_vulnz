@@ -37,7 +37,7 @@ class LocalPersistVulnzAgent(agent.Agent):
                                     technical_detail=message.data['technical_detail'],
                                     risk_rating=message.data['risk_rating'],
                                     cvss_v3_vector=message.data['cvss_v3_vector'],
-                                    dna= message.data['dna'])
+                                    dna=message.data.get('dna'))
 
 
 if __name__ == '__main__':
