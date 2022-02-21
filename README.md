@@ -16,65 +16,22 @@ _PersistVulnz locally persists vulnerabilities discovered after a scan is run._
 <img src="" alt="agent_persist_vulnz" />
 </p>
 
-This repository is an implementation of the PersistVulnz agent.
-
-## Getting Started
-To perform your first scan, simply run the following command.
-```shell
-ostorlab scan run --install --agents agent/ostorlab/local_persist_vulnz ip 8.8.8.8
-```
-
-This command will download and install `agent/ostorlab/local_persist_vulnz` and target the ip `8.8.8.8`.
-For more information, please refer to the [Ostorlab Documentation](https://github.com/Ostorlab/ostorlab/blob/main/README.md)
-
+This repository is an implementation of the default persist vulnz agent. Persist Vulnz is a default agent needed to run a scan using the local runtime.
 
 ## Usage
 
-Agent PersistVulnz can be installed directly from the ostorlab agent store or built from this repository.
+Agent Persist Vulnz can be installed directly from the ostorlab agent store or built from this repository.
 
  ### Install directly from ostorlab agent store
 
  ```shell
  ostorlab agent install agent/ostorlab/local_persist_vulnz
  ```
-
-You can then run the agent with the following command:
-```shell
-ostorlab scan run --agents agent/ostorlab/local_persist_vulnz ip 8.8.8.8
-```
-
-
-### Build directly from the repository
-
- 1. To build the persist_vulnz agent you need to have [ostorlab](https://pypi.org/project/ostorlab/) installed in your machine. If you have already installed ostorlab, you can skip this step.
+The agent will be automatically installed and updated by simply passing `--install` flag:
 
 ```shell
-pip3 install ostorlab
+ostorlab scan run --install --agents agent/ostorlab/tsunami ip 8.8.8.8
 ```
-
- 2. Clone this repository.
-
-```shell
-git clone https://github.com/Ostorlab/agent_persist_vulnz.git && cd agent_persist_vulnz
-```
-
- 3. Build the agent image using ostorlab cli.
-
- ```shell
- ostortlab agent build --file=ostorlab.yaml
- ```
- You can pass the optional flag `--organization` to specify your organisation. The organization is empty by default.
-
- 4. Run the agent using one of the following commands:
-	 * If you did not specify an organization when building the image:
-      ```shell
-      ostorlab scan run --agents agent//local_persist_vulnz ip 8.8.8.8
-      ```
-	 * If you specified an organization when building the image:
-      ```shell
-      ostorlab scan run --agents agent/[ORGANIZATION]/local_persist_vulnz ip 8.8.8.8
-      ```
-
 
 ## License
 [Apache](./LICENSE)
