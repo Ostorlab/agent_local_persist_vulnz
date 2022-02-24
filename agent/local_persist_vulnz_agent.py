@@ -1,19 +1,19 @@
 """LocalPersistVulnz agent: Agent responsible for persisting vulnerabilities to local DB."""
 import logging
-import os
-from rich import logging as rich_logging
 
 from ostorlab.agent import agent
 from ostorlab.agent import message as m
 from ostorlab.runtimes.local.models import models
+from rich import logging as rich_logging
 
 logging.basicConfig(
     format='%(message)s',
     datefmt='[%X]',
-    handlers=[rich_logging.RichHandler(rich_tracebacks=True)]
+    handlers=[rich_logging.RichHandler(rich_tracebacks=True)],
+    level='INFO',
+    force=True
 )
 logger = logging.getLogger(__name__)
-logger.setLevel('DEBUG')
 
 
 class LocalPersistVulnzAgent(agent.Agent):
@@ -29,17 +29,19 @@ class LocalPersistVulnzAgent(agent.Agent):
         Returns:
 
         """
-        models.Vulnerability.create(scan_id=os.getenv('UNIVERSE'),
-                                    title= message.data['title'],
-                                    short_description= message.data['short_description'],
+        logger.info('processing message of selector : %s', message.selector)
+        models.Vulnerability.create(scan_id=self.universe,
+                                    title=message.data['title'],
+                                    short_description=message.data['short_description'],
                                     description=message.data['description'],
                                     recommendation=message.data['recommendation'],
                                     technical_detail=message.data['technical_detail'],
                                     risk_rating=message.data['risk_rating'],
                                     cvss_v3_vector=message.data['cvss_v3_vector'],
                                     dna=message.data.get('dna'))
+        logger.info('vulnerability persisted')
 
 
 if __name__ == '__main__':
-    logger.info('starting agent Local Persist Vulnz')
+    logger.info('starting agent..')
     LocalPersistVulnzAgent.main()
