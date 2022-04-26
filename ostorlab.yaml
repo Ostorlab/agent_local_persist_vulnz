@@ -1,6 +1,6 @@
 kind: Agent
 name: local_persist_vulnz
-version: 0.0.6
+version: 0.1.0
 description: |
   This repository is an implementation of the default persist vulnz agent. Persist Vulnz is a default agent needed to run a scan using the local runtime.
 
