@@ -2,7 +2,7 @@
 import logging
 
 from ostorlab.agent import agent
-from ostorlab.agent import message as m
+from ostorlab.agent.message import message as m
 from ostorlab.runtimes.local.models import models
 from rich import logging as rich_logging
 
