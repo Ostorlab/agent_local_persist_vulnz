@@ -7,7 +7,7 @@ from unittest import mock
 from ostorlab.agent import definitions as agent_definitions
 from ostorlab.runtimes import definitions as runtime_definitions
 from ostorlab.runtimes.local.models import models
-from ostorlab.agent import message
+from ostorlab.agent.message import message
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 
