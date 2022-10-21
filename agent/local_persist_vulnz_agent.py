@@ -38,7 +38,8 @@ class LocalPersistVulnzAgent(agent.Agent):
                                     technical_detail=message.data['technical_detail'],
                                     risk_rating=message.data['risk_rating'],
                                     cvss_v3_vector=message.data['cvss_v3_vector'],
-                                    dna=message.data.get('dna'))
+                                    dna=message.data.get('dna'),
+                                    location=message.data.get('vulnerability_location', {}))
         logger.info('vulnerability persisted')
 
 
