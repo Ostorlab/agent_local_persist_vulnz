@@ -13,7 +13,7 @@ from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 @pytest.fixture
 def scan_message():
-    """Creates a dummy message of type v3.asset.file to be used by the agent for testing purposes.
+    """Creates a dummy message of type v3.report.vulnerability to be used by the agent for testing purposes.
     The files used is the EICAR Anti-Virus Test File.
     """
     selector = 'v3.report.vulnerability'
@@ -32,7 +32,11 @@ def scan_message():
             'targeted_by_malware': False,
             'targeted_by_ransomware': False,
             'targeted_by_nation_state': False,
-            'dna': 'dna'
+            'dna': 'dna',
+            'vulnerability_location': {
+                'domain_name': {'name': 'dummy.co'},
+                'metadata': [{'type': 'URL', 'value': 'https://dummy.co/path1'}]
+            }
         }
     return message.Message.from_data(selector, data=msg_data)
 
