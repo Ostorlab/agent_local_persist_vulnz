@@ -35,6 +35,7 @@ class LocalPersistVulnzAgent(agent.Agent):
                                     short_description=message.data['short_description'],
                                     description=message.data['description'],
                                     recommendation=message.data['recommendation'],
+                                    references=message.data.get('references', []),
                                     technical_detail=message.data['technical_detail'],
                                     risk_rating=message.data['risk_rating'],
                                     cvss_v3_vector=message.data['cvss_v3_vector'],

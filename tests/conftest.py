@@ -56,8 +56,6 @@ def persist_vulnz_agent():
         bus_management_url='http://guest:guest@localhost:15672/',
         bus_vhost='/',
     )
-    database = models.Database()
-    database.create_db_tables()
     scan = models.Scan.create('test')
     os.environ['UNIVERSE'] = str(scan.id)
     agent = agent_local_persist_vulnz.LocalPersistVulnzAgent(definition, settings)
