@@ -1,8 +1,8 @@
 """Pytest fixture for the local_persist_vulnz agent."""
 import os
-import pytest
+import sys
 
-from unittest import mock
+import pytest
 
 from ostorlab.agent import definitions as agent_definitions
 from ostorlab.runtimes import definitions as runtime_definitions
@@ -11,9 +11,18 @@ from ostorlab.agent.message import message
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 
+@pytest.fixture(name='db_engine_path')
+def db_engine_tmp_path(tmpdir):
+    if sys.platform == 'win32':
+        path = f'sqlite:///{tmpdir}\\ostorlab_db1.sqlite'.replace('\\', '\\\\')
+    else:
+        path = f'sqlite:////{tmpdir}/ostorlab_db1.sqlite'
+    return path
+
+
 @pytest.fixture
 def scan_message():
-    """Creates a dummy message of type v3.asset.file to be used by the agent for testing purposes.
+    """Creates a dummy message of type v3.report.vulnerability to be used by the agent for testing purposes.
     The files used is the EICAR Anti-Virus Test File.
     """
     selector = 'v3.report.vulnerability'
@@ -32,15 +41,19 @@ def scan_message():
             'targeted_by_malware': False,
             'targeted_by_ransomware': False,
             'targeted_by_nation_state': False,
-            'dna': 'dna'
+            'dna': 'dna',
+            'vulnerability_location': {
+                'domain_name': {'name': 'dummy.co'},
+                'metadata': [{'type': 'URL', 'value': 'https://dummy.co/path1'}]
+            }
         }
     return message.Message.from_data(selector, data=msg_data)
 
 
 @pytest.fixture
-@mock.patch('ostorlab.runtimes.local.models.models.ENGINE_URL', 'sqlite:////tmp/ostorlab_db1.sqlite')
-def persist_vulnz_agent():
+def persist_vulnz_agent(mocker, db_engine_path):
     """Instantiate local_persist_vulnz agent."""
+    mocker.patch.object(models, 'ENGINE_URL', db_engine_path)
     definition = agent_definitions.AgentDefinition(
         name='agent_local_persist_vulnz',
         out_selectors=[],
@@ -52,8 +65,6 @@ def persist_vulnz_agent():
         bus_management_url='http://guest:guest@localhost:15672/',
         bus_vhost='/',
     )
-    database = models.Database()
-    database.create_db_tables()
     scan = models.Scan.create('test')
     os.environ['UNIVERSE'] = str(scan.id)
     agent = agent_local_persist_vulnz.LocalPersistVulnzAgent(definition, settings)
