@@ -11,8 +11,8 @@ from ostorlab.agent.message import message
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 
-@pytest.fixture()
-def db_engine_path(tmpdir):
+@pytest.fixture(name='db_engine_path')
+def db_engine_tmp_path(tmpdir):
     if sys.platform == 'win32':
         path = f'sqlite:///{tmpdir}\\ostorlab_db1.sqlite'.replace('\\', '\\\\')
     else:
