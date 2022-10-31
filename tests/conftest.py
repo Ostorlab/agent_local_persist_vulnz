@@ -1,14 +1,23 @@
 """Pytest fixture for the local_persist_vulnz agent."""
 import os
-import pytest
+import sys
 
-from unittest import mock
+import pytest
 
 from ostorlab.agent import definitions as agent_definitions
 from ostorlab.runtimes import definitions as runtime_definitions
 from ostorlab.runtimes.local.models import models
 from ostorlab.agent.message import message
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
+
+
+@pytest.fixture()
+def db_engine_path(tmpdir):
+    if sys.platform == 'win32':
+        path = f'sqlite:///{tmpdir}\\ostorlab_db1.sqlite'.replace('\\', '\\\\')
+    else:
+        path = f'sqlite:////{tmpdir}/ostorlab_db1.sqlite'
+    return path
 
 
 @pytest.fixture
@@ -42,9 +51,9 @@ def scan_message():
 
 
 @pytest.fixture
-@mock.patch('ostorlab.runtimes.local.models.models.ENGINE_URL', 'sqlite:////tmp/ostorlab_db1.sqlite')
-def persist_vulnz_agent():
+def persist_vulnz_agent(mocker, db_engine_path):
     """Instantiate local_persist_vulnz agent."""
+    mocker.patch.object(models, 'ENGINE_URL', db_engine_path)
     definition = agent_definitions.AgentDefinition(
         name='agent_local_persist_vulnz',
         out_selectors=[],
