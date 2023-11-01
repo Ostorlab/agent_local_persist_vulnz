@@ -14,5 +14,5 @@ def testLocalPersistVulnzAgent_always_VulnPersistedToLocalDB(
 
         assert session.query(models.Vulnerability).count() == init_count + 1
         assert "My reference: https://ostorlab.co" in vuln.references
-        assert "Domain: dummy.co" in vuln.location
+        assert "Domain: `dummy.co`" in vuln.location
         assert "URL: https://dummy.co/path1" in vuln.location
