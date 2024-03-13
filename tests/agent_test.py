@@ -1,4 +1,5 @@
 """Unittests for local_persist_vulnz agent."""
+
 from ostorlab.runtimes.local.models import models
 
 

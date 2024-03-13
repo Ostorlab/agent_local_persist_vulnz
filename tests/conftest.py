@@ -1,4 +1,5 @@
 """Pytest fixture for the local_persist_vulnz agent."""
+
 import os
 import sys
 
