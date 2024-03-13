@@ -29,5 +29,8 @@ in_selectors:
 out_selectors: []
 mounts:
   - '$CONFIG_HOME/db.sqlite:/root/.ostorlab/db.sqlite'
+supported_architectures:
+  - linux/arm64/v8
+  - linux/x86_64 
 docker_file_path : Dockerfile
 docker_build_root : .

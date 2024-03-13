@@ -1,4 +1,5 @@
 """LocalPersistVulnz agent: Agent responsible for persisting vulnerabilities to local DB."""
+
 import logging
 
 from ostorlab.agent import agent
