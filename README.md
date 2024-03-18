@@ -20,17 +20,17 @@ This repository is an implementation of the default persist vulnz agent. Persist
 
 ## Usage
 
-Agent Persist Vulnz can be installed directly from the ostorlab agent store or built from this repository.
+Agent Persist Vulnz can be installed directly from the oxo agent store or built from this repository.
 
- ### Install directly from ostorlab agent store
+ ### Install directly from oxo agent store
 
  ```shell
- ostorlab agent install agent/ostorlab/local_persist_vulnz
+ oxooxo agent install agent/ostorlab/local_persist_vulnz
  ```
 The agent will be automatically installed and updated by simply passing `--install` flag:
 
 ```shell
-ostorlab scan run --install --agent agent/ostorlab/tsunami ip 8.8.8.8
+oxo scan run --install --agent agent/ostorlab/tsunami ip 8.8.8.8
 ```
 
 ## License
