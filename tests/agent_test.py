@@ -17,3 +17,5 @@ def testLocalPersistVulnzAgent_always_VulnPersistedToLocalDB(
         assert "My reference: https://ostorlab.co" in vuln.references
         assert "Domain: `dummy.co`" in vuln.location
         assert "URL: https://dummy.co/path1" in vuln.location
+        assert "exploitation steps" in vuln.exploitation_detail
+        assert "post exploitation steps" in vuln.post_exploitation_detail

@@ -30,6 +30,8 @@ def scan_message():
     msg_data = {
         "title": "my vuln",
         "technical_detail": "print $1",
+        "exploitation_detail": "exploitation steps",
+        "post_exploitation_detail": "post exploitation steps",
         "risk_rating": "HIGH",
         "cvss_v3_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H/E:H/RL:O/RC:C",
         "short_description": "Control user input",
