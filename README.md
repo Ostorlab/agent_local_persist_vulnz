@@ -12,10 +12,6 @@ _PersistVulnz locally persists vulnerabilities discovered after a scan is run._
 
 ---
 
-<p align="center">
-<img src="" alt="agent_persist_vulnz" />
-</p>
-
 This repository is an implementation of the default persist vulnz agent. Persist Vulnz is a default agent needed to run a scan using the local runtime.
 
 ## Usage
@@ -25,7 +21,7 @@ Agent Persist Vulnz can be installed directly from the oxo agent store or built 
  ### Install directly from oxo agent store
 
  ```shell
- oxooxo agent install agent/ostorlab/local_persist_vulnz
+ oxo agent install agent/ostorlab/local_persist_vulnz
  ```
 The agent will be automatically installed and updated by simply passing `--install` flag:
 
