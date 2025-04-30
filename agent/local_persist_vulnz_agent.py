@@ -31,6 +31,11 @@ class LocalPersistVulnzAgent(agent.Agent):
 
         """
         logger.info("processing message of selector : %s", message.selector)
+
+        if message.selector =="v3.report.event.scan.done":
+            logger.info("scan done message received")
+            return
+
         models.Vulnerability.create(
             scan_id=self.universe,
             title=message.data["title"],
