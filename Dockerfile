@@ -1,4 +1,4 @@
-FROM python:3.11-slim as base
+FROM python:3.14-slim as base
 FROM base as builder
 RUN mkdir /install
 WORKDIR /install
@@ -11,4 +11,4 @@ ENV PYTHONPATH=/app
 COPY agent /app/agent
 COPY ostorlab.yaml /app/agent/ostorlab.yaml
 WORKDIR /app
-CMD ["python3.11", "/app/agent/local_persist_vulnz_agent.py"]
+CMD ["python", "/app/agent/local_persist_vulnz_agent.py"]
