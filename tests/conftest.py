@@ -4,11 +4,11 @@ import os
 import sys
 
 import pytest
-
 from ostorlab.agent import definitions as agent_definitions
+from ostorlab.agent.message import message
 from ostorlab.runtimes import definitions as runtime_definitions
 from ostorlab.runtimes.local.models import models
-from ostorlab.agent.message import message
+
 from agent import local_persist_vulnz_agent as agent_local_persist_vulnz
 
 
